@@ -32,8 +32,8 @@ public class Main {
             System.out.println("2. Creat new Room");
             System.out.println("3. Remove Guest");
             System.out.println("4. Remove Room");
-            System.out.println("4. Edit the Guest");
-            System.out.println("5. Calculator Bill");
+            System.out.println("5. Edit the Guest");
+            System.out.println("6. Calculator Bill");
             System.out.println("o. Exit");
             System.out.println("Enter the your choice:");
             Scanner inputChoice = new Scanner(System.in);
@@ -41,7 +41,8 @@ public class Main {
             switch (choice) {
                 case 1:
                     Bill bill = new Bill();
-                    bill.setGuest(creatNewGuest());
+                    Guest guest = creatNewGuest();
+                    bill.setGuest(guest);
                     System.out.println("Enter the code");
                     System.out.println("Enter the code room:");
                     Scanner inputRoom = new Scanner(System.in);
@@ -59,6 +60,7 @@ public class Main {
                     LocalDate checkin  = LocalDate.of(year, month, day);
                     bill.setCheckin(checkin);
                     hotel.showAllListGuest();
+                    hotel.addGuest(guest);
                     hotel.getBillArrayList().add(bill);
                     break;
                 case 2:
@@ -74,10 +76,17 @@ public class Main {
                     break;
                 case 4:
                     Scanner inputIndexRoom = new Scanner(System.in);
+                    System.out.println("Enter the index of room");
                     int indexRoom = inputIndexRoom.nextInt();
                     hotel.removeRoom(indexRoom);
                     break;
                 case 5:
+                    Scanner inputIndexGuest = new Scanner(System.in);
+                    System.out.println("Enter the index Guest:");
+                    int indexGuest = inputIndexGuest.nextInt();
+                    Guest newGuest = creatNewGuest();
+                    hotel.getGuestArrayList().set(indexGuest, newGuest);
+                case 6:
                     System.out.println("Enter the identity:");
                     Scanner inputIdentity = new Scanner(System.in);
                     String identity = inputIdentity.nextLine();
